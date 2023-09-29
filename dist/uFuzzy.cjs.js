@@ -698,8 +698,12 @@ function uFuzzy(opts) {
 		return prepend.length;
 	};
 
+	const OOO_TERMS_LIMIT = 5;
+
 	// returns [idxs, info, order]
-	const _search = (haystack, needle, outOfOrder = false, infoThresh = 1e3, preFiltered) => {
+	const _search = (haystack, needle, outOfOrder, infoThresh = 1e3, preFiltered) => {
+		outOfOrder = !outOfOrder ? 0 : outOfOrder === true ? OOO_TERMS_LIMIT : outOfOrder;
+
 		let needles = null;
 		let matches = null;
 
